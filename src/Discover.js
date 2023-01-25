@@ -1,10 +1,14 @@
-const Discover = ({ numDogProfiles, dogInfo, setNumDogProfiles }) => {
+import { useEffect } from "react";
+const Discover = ({ dogProfileCount, dogInfo, setDogProfileCount }) => {
   return (
     <div>
       <h1>Discover</h1>
+
+      <img src={dogInfo[dogProfileCount].image} alt="" />
+
       <button
         onClick={() => {
-          setNumDogProfiles((current) => {
+          setDogProfileCount((current) => {
             return current + 1;
           });
         }}
