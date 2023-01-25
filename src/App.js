@@ -16,6 +16,7 @@ function App() {
   const [dogProfileCount, setDogProfileCount] = useState(0);
   const [readIntro, setReadIntro] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [likedDogs, setLikedDogs] = useState([]);
 
   const getDogData = async () => {
     setIsLoading(true);
@@ -23,6 +24,7 @@ function App() {
     const imageData = await imageResponse.json();
     const userResponse = await fetch(FakeUserURL);
     const userData = await userResponse.json();
+    //console.log(userData);
 
     let tempArray = [];
     tempArray["image"] = imageData.message;
@@ -75,6 +77,8 @@ function App() {
           dogProfileCount={dogProfileCount}
           setDogProfileCount={setDogProfileCount}
           dogInfo={dogInfo}
+          setLikedDogs={setLikedDogs}
+          likedDogs={likedDogs}
         />
       ) : (
         <Likes />

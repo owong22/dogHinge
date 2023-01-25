@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-const Discover = ({ dogProfileCount, dogInfo, setDogProfileCount }) => {
+const Discover = ({
+  dogProfileCount,
+  dogInfo,
+  setDogProfileCount,
+  setLikedDogs,
+  likedDogs,
+}) => {
   return (
     <div>
       <h1>Discover</h1>
@@ -13,8 +19,28 @@ const Discover = ({ dogProfileCount, dogInfo, setDogProfileCount }) => {
           });
         }}
       >
+        "Dislike"
+      </button>
+
+      <button
+        onClick={() => {
+          setDogProfileCount((current) => {
+            return current + 1;
+          });
+
+          setLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
+        }}
+      >
         "Like"
       </button>
+      {console.log(likedDogs)}
+      {likedDogs.map((current) => {
+        return (
+          <div>
+            <img src={current.image} alt="" />
+          </div>
+        );
+      })}
     </div>
   );
 };
