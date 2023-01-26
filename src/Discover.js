@@ -33,14 +33,6 @@ const Discover = ({
       >
         "Like"
       </button>
-      {console.log(likedDogs)}
-      {likedDogs.map((current) => {
-        return (
-          <div>
-            <img src={current.image} alt="" />
-          </div>
-        );
-      })}
     </div>
   );
 };

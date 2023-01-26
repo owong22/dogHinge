@@ -81,7 +81,7 @@ function App() {
           likedDogs={likedDogs}
         />
       ) : (
-        <Likes />
+        <Likes likedDogs={likedDogs} setLikedDogs={setLikedDogs} />
       )}
     </div>
   );
