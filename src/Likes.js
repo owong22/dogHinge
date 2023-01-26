@@ -1,3 +1,5 @@
+import DogProfile from "./DogProfile";
+
 const Likes = ({ likedDogs, setLikedDogs }) => {
   return (
     <div>
@@ -5,7 +7,7 @@ const Likes = ({ likedDogs, setLikedDogs }) => {
       {likedDogs.map((current) => {
         return (
           <div key={current.info.results[0].id.value}>
-            <img src={current.image} alt="" />
+            <DogProfile dogProf={current} />
           </div>
         );
       })}

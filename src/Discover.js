@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import DogProfile from "./DogProfile";
+import { FcLike } from "react-icons/fc";
+import { ImCancelCircle } from "react-icons/im";
 const Discover = ({
   dogProfileCount,
   dogInfo,
@@ -9,8 +12,9 @@ const Discover = ({
   return (
     <div>
       <h1>Discover</h1>
-
-      <img src={dogInfo[dogProfileCount].image} alt="" />
+      <div>
+        <DogProfile dogProf={dogInfo[dogProfileCount]} />
+      </div>
 
       <button
         onClick={() => {
@@ -19,7 +23,7 @@ const Discover = ({
           });
         }}
       >
-        "Dislike"
+        <ImCancelCircle />
       </button>
 
       <button
@@ -31,7 +35,7 @@ const Discover = ({
           setLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
         }}
       >
-        "Like"
+        <FcLike />
       </button>
     </div>
   );
