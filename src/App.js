@@ -17,6 +17,8 @@ function App() {
   const [readIntro, setReadIntro] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [likedDogs, setLikedDogs] = useState([]);
+  const [constLikedDogs, setConstLikedDogs] = useState([]); // A copy of the likedDogs state that is needed to return all liked dogs back to the page
+  // Seems like a highly inefficent solution?
 
   const getDogData = async () => {
     setIsLoading(true);
@@ -70,7 +72,7 @@ function App() {
           setDiscoverPage(!discoverPage);
         }}
       >
-        {discoverPage ? <p>See your Likes</p> : <p>Discover</p>}
+        {discoverPage ? <p>See your Likes</p> : <p>Discover some Dogs</p>}
       </button>
       {readIntro && discoverPage ? (
         <Discover
@@ -79,9 +81,16 @@ function App() {
           dogInfo={dogInfo}
           setLikedDogs={setLikedDogs}
           likedDogs={likedDogs}
+          constLikedDogs={constLikedDogs}
+          setConstLikedDogs={setConstLikedDogs}
         />
       ) : (
-        <Likes likedDogs={likedDogs} setLikedDogs={setLikedDogs} />
+        <Likes
+          likedDogs={likedDogs}
+          setLikedDogs={setLikedDogs}
+          constLikedDogs={constLikedDogs}
+          setConstLikedDogs={setConstLikedDogs}
+        />
       )}
     </div>
   );

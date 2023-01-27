@@ -8,6 +8,8 @@ const Discover = ({
   setDogProfileCount,
   setLikedDogs,
   likedDogs,
+  constLikedDogs,
+  setConstLikedDogs,
 }) => {
   return (
     <div>
@@ -31,7 +33,7 @@ const Discover = ({
           setDogProfileCount((current) => {
             return current + 1;
           });
-
+          setConstLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
           setLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
         }}
       >
