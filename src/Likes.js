@@ -1,4 +1,5 @@
 import DogProfile from "./DogProfile";
+import { useState } from "react";
 
 const Likes = ({
   likedDogs,
@@ -6,6 +7,8 @@ const Likes = ({
   constLikedDogs,
   setConstLikedDogs,
 }) => {
+  const [inputValue, setInputValue] = useState("");
+
   let uniqueDogProf = [
     ...new Set(
       likedDogs.map((current) => current.info.results[0].location.country)
@@ -24,9 +27,27 @@ const Likes = ({
       setLikedDogs(newArray);
     }
   };
+
+  const handleSubmit = () => {
+    if (inputValue) {
+      setInputValue("");
+    }
+  };
   return (
     <div>
       <h1>Likes</h1>
+      <div>
+        <form action="" onSubmit={handleSubmit}>
+          <label htmlFor="">Filter By Profile Traits</label>
+
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="focus:bg-white hover:bg-black focus:border-white hover:border-black"
+          />
+        </form>
+      </div>
       <button
         onClick={() => {
           filterByCountry("All");
