@@ -35,9 +35,10 @@ const Likes = ({
       >
         All
       </button>
-      {uniqueDogProf.map((current, index) => {
+      {uniqueDogProf.map((current) => {
+        // Better way to solve key id issue? Is using a index a better solution?
         return (
-          <div key={index}>
+          <div key={Math.random()}>
             <button
               onClick={() => {
                 filterByCountry(current);
