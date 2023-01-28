@@ -7,8 +7,7 @@ const Likes = ({
   constLikedDogs,
   setConstLikedDogs,
 }) => {
-  const [inputValue, setInputValue] = useState("");
-
+  const [inputTrait, setInputTrait] = useState("");
   let uniqueDogProf = [
     ...new Set(
       likedDogs.map((current) => current.info.results[0].location.country)
@@ -27,27 +26,30 @@ const Likes = ({
       setLikedDogs(newArray);
     }
   };
-
-  const handleSubmit = () => {
-    if (inputValue) {
-      setInputValue("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputTrait) {
+      setInputTrait("");
     }
   };
   return (
     <div>
       <h1>Likes</h1>
       <div>
-        <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="">Filter By Profile Traits</label>
-
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="">Search by Profile Trait</label>
           <input
             type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className="focus:bg-white hover:bg-black focus:border-white hover:border-black"
+            value={inputTrait}
+            onChange={(e) => {
+              setInputTrait(e.target.value);
+            }}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
+          <button>Enter</button>
         </form>
       </div>
+
       <button
         onClick={() => {
           filterByCountry("All");
