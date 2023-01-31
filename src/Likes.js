@@ -1,5 +1,5 @@
 import DogProfile from "./DogProfile";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Likes = ({
   likedDogs,
@@ -7,7 +7,10 @@ const Likes = ({
   constLikedDogs,
   setConstLikedDogs,
 }) => {
-  const [inputTrait, setInputTrait] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [filters, setFilters] = useState([]);
+  const initialRender = useRef(true);
+  const secondRender = useRef(true);
   let uniqueDogProf = [
     ...new Set(
       likedDogs.map((current) => current.info.results[0].location.country)
@@ -26,12 +29,37 @@ const Likes = ({
       setLikedDogs(newArray);
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputTrait) {
-      setInputTrait("");
+
+  const constFilterProfiles = (filters) => {
+    if (filters == "") {
+      setLikedDogs(constLikedDogs);
+    } else {
+      let filteredArray = likedDogs.filter((current) => {
+        if (current.info.results[0].location.country == filters[0]) {
+          return current;
+        }
+      });
+      setLikedDogs(filteredArray);
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFilters([]);
+    if (inputValue) {
+      setFilters([...filters, inputValue]);
+      setInputValue("");
+    }
+  };
+
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else if (secondRender.current) {
+      secondRender.current = false;
+    } else {
+      constFilterProfiles(filters);
+    }
+  }, [filters]);
   return (
     <div>
       <h1>Likes</h1>
@@ -40,9 +68,9 @@ const Likes = ({
           <label htmlFor="">Search by Profile Trait</label>
           <input
             type="text"
-            value={inputTrait}
+            value={inputValue}
             onChange={(e) => {
-              setInputTrait(e.target.value);
+              setInputValue(e.target.value);
             }}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />

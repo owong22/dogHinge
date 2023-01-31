@@ -70,6 +70,7 @@ function App() {
       <button
         onClick={() => {
           setDiscoverPage(!discoverPage);
+          setLikedDogs(constLikedDogs); // Undos any search filters on the likes page. When user goes back to likes page, all likes are shown
         }}
       >
         {discoverPage ? <p>See your Likes</p> : <p>Discover some Dogs</p>}
