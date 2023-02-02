@@ -60,19 +60,21 @@ function App() {
   }
 
   return (
-    <div className="">
-      <h1 className="text-3xl font-bold text-red-500 underline">
+    <div>
+      <h1 className="flex justify-center my-5 mb-4 font-bold text-red-500 underline text-7xl bg-red-50">
         Welcome to Dog Hinge!
       </h1>
-
-      <button
-        onClick={() => {
-          setDiscoverPage(!discoverPage);
-          setLikedDogs(constLikedDogs); // Undos any search filters on the likes page. When user goes back to likes page, all likes are shown
-        }}
-      >
-        {discoverPage ? <p>See your Likes</p> : <p>Discover some Dogs</p>}
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={() => {
+            setDiscoverPage(!discoverPage);
+            setLikedDogs(constLikedDogs); // Undos any search filters on the likes page. When user goes back to likes page, all likes are shown
+          }}
+          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+        >
+          {discoverPage ? <p>See your Likes</p> : <p>Discover Dogs</p>}
+        </button>
+      </div>
       {readIntro && discoverPage ? (
         <Discover
           dogProfileCount={dogProfileCount}

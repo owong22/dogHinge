@@ -67,13 +67,15 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
     }
   }, [filters]);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mx-7">
       <div>
-        <h1>Your Likes</h1>
+        <h1 className="mb-3 text-6xl font-bold text-gray-600">Your Likes</h1>
       </div>
       <div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="">Search by Profile Trait</label>
+          <div className="mb-2">
+            <label className="text-xl ">Search by Profile Trait:</label>
+          </div>
           <input
             type="text"
             value={inputValue}
@@ -82,19 +84,27 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
             }}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
-          <button>Apply Filter</button>
+          <div className="flex justify-center my-3">
+            <button
+              type="submit"
+              className="px-4 py-2 mx-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              Apply Filter
+            </button>
+            <button
+              type="reset"
+              onClick={() => {
+                setFilters([]);
+              }}
+              className="px-4 py-2 mx-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              Clear Filters
+            </button>
+          </div>
         </form>
       </div>
-      <button
-        onClick={() => {
-          setFilters([]);
-        }}
-        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-      >
-        Clear Filters
-      </button>
 
-      <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1">
         {likedDogs.map((current) => {
           return (
             <div
