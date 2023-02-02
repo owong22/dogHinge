@@ -1,21 +1,11 @@
 import DogProfile from "./DogProfile";
 import { useEffect, useState, useRef } from "react";
 
-const Likes = ({
-  likedDogs,
-  setLikedDogs,
-  constLikedDogs,
-  setConstLikedDogs,
-}) => {
+const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
   const [inputValue, setInputValue] = useState("");
   const [filters, setFilters] = useState([]);
   const initialRender = useRef(true);
   const secondRender = useRef(true);
-  let uniqueDogProf = [
-    ...new Set(
-      likedDogs.map((current) => current.info.results[0].location.country)
-    ),
-  ];
 
   const filterByCountry = (country) => {
     if (country == "All") {
@@ -35,7 +25,23 @@ const Likes = ({
       setLikedDogs(constLikedDogs);
     } else {
       let filteredArray = likedDogs.filter((current) => {
-        if (current.info.results[0].location.country == filters[0]) {
+        let returnBool = true;
+        for (let i = 0; i < filters.length; i++) {
+          if (
+            current.info.results[0].location.country.toLowerCase() ==
+              filters[i].toLowerCase() ||
+            current.info.results[0].name.first.toLowerCase() ==
+              filters[i].toLowerCase() ||
+            current.info.results[0].gender.toLowerCase() ==
+              filters[i].toLowerCase() ||
+            Math.floor(current.info.results[0].dob.age / 7) ==
+              Math.floor(filters[i])
+          ) {
+          } else {
+            returnBool = false;
+          }
+        }
+        if (returnBool) {
           return current;
         }
       });
@@ -61,8 +67,10 @@ const Likes = ({
     }
   }, [filters]);
   return (
-    <div>
-      <h1>Likes</h1>
+    <div className="flex flex-col">
+      <div>
+        <h1>Your Likes</h1>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="">Search by Profile Trait</label>
@@ -74,40 +82,30 @@ const Likes = ({
             }}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
-          <button>Enter</button>
+          <button>Apply Filter</button>
         </form>
       </div>
-
       <button
         onClick={() => {
-          filterByCountry("All");
+          setFilters([]);
         }}
-        className="px-4 py-2 m-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
       >
-        All
+        Clear Filters
       </button>
-      {uniqueDogProf.map((current) => {
-        // Better way to solve key id issue? Is using a index a better solution?
-        return (
-          <div key={Math.random()}>
-            <button
-              onClick={() => {
-                filterByCountry(current);
-              }}
-              className="px-4 py-2 m-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+
+      <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1">
+        {likedDogs.map((current) => {
+          return (
+            <div
+              key={current.info.results[0].id.value + Math.random()}
+              className="flex justify-center"
             >
-              {current}
-            </button>
-          </div>
-        );
-      })}
-      {likedDogs.map((current) => {
-        return (
-          <div key={current.info.results[0].id.value}>
-            <DogProfile dogProf={current} />
-          </div>
-        );
-      })}
+              <DogProfile dogProf={current} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

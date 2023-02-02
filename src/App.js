@@ -26,7 +26,6 @@ function App() {
     const imageData = await imageResponse.json();
     const userResponse = await fetch(FakeUserURL);
     const userData = await userResponse.json();
-    //console.log(userData);
 
     let tempArray = [];
     tempArray["image"] = imageData.message;
@@ -61,12 +60,11 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="">
       <h1 className="text-3xl font-bold text-red-500 underline">
         Welcome to Dog Hinge!
       </h1>
 
-      {console.log(dogInfo)}
       <button
         onClick={() => {
           setDiscoverPage(!discoverPage);
