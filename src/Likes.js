@@ -6,6 +6,7 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
   const [filters, setFilters] = useState([]);
   const initialRender = useRef(true);
   const secondRender = useRef(true);
+  let numRows = ""; // Change the className to adjust the grid depending on how many profiles there are. 3 or less profiles liked will only have 3 rows.
 
   const filterByCountry = (country) => {
     if (country == "All") {
@@ -66,8 +67,14 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
       constFilterProfiles(filters);
     }
   }, [filters]);
+
+  likedDogs.length <= 3
+    ? (numRows = "grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1")
+    : (numRows =
+        "grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 2xl:grid-cols-4");
+
   return (
-    <div className="flex flex-col mx-7">
+    <div className="flex flex-col mx-20">
       <div>
         <h1 className="mb-3 text-6xl font-bold text-gray-600">Your Likes</h1>
       </div>
@@ -104,7 +111,7 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
         </form>
       </div>
 
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1">
+      <div className={numRows}>
         {likedDogs.map((current) => {
           return (
             <div

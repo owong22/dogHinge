@@ -44,17 +44,22 @@ function App() {
   if (!readIntro) {
     return (
       <div>
-        <h2>
-          View Dog profiles, like and save your favories or dislike if it's not
-          your type of breed. Have fun!
-        </h2>
-        <button
-          onClick={() => {
-            setReadIntro(true);
-          }}
-        >
-          Let's see some Dogs!
-        </button>
+        <div className="flex justify-center text-2xl mt-80">
+          <h2>
+            View Dog profiles, like and save your favories or dislike if it's
+            not your type of breed. Have fun!
+          </h2>
+        </div>
+        <div className="flex justify-center text-lg mt-7">
+          <button
+            onClick={() => {
+              setReadIntro(true);
+            }}
+            className="p-4 font-bold text-white bg-green-500 rounded-lg hover:bg-green-700"
+          >
+            Let's see some Dogs!
+          </button>
+        </div>
       </div>
     );
   }
@@ -70,7 +75,7 @@ function App() {
             setDiscoverPage(!discoverPage);
             setLikedDogs(constLikedDogs); // Undos any search filters on the likes page. When user goes back to likes page, all likes are shown
           }}
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+          className="px-4 py-2 my-10 font-bold text-white transform rounded bg-rose-600 hover:scale-110 motion-reduce:transform-none"
         >
           {discoverPage ? <p>See your Likes</p> : <p>Discover Dogs</p>}
         </button>

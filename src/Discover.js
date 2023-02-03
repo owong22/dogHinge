@@ -12,33 +12,34 @@ const Discover = ({
   setConstLikedDogs,
 }) => {
   return (
-    <div>
-      <h1>Discover</h1>
-      <div>
+    <div className="mx-20">
+      <h1 className="mb-3 text-6xl font-bold text-gray-600">Discover</h1>
+      <div className="flex justify-center mt-28">
         <DogProfile dogProf={dogInfo[dogProfileCount]} />
       </div>
 
-      <button
-        onClick={() => {
-          setDogProfileCount((current) => {
-            return current + 1;
-          });
-        }}
-      >
-        <ImCancelCircle />
-      </button>
-
-      <button
-        onClick={() => {
-          setDogProfileCount((current) => {
-            return current + 1;
-          });
-          setConstLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
-          setLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
-        }}
-      >
-        <FcLike />
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={() => {
+            setDogProfileCount((current) => {
+              return current + 1;
+            });
+          }}
+        >
+          <ImCancelCircle className="w-12 h-12 m-6" />
+        </button>
+        <button
+          onClick={() => {
+            setDogProfileCount((current) => {
+              return current + 1;
+            });
+            setConstLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
+            setLikedDogs([...likedDogs, dogInfo[dogProfileCount]]);
+          }}
+        >
+          <FcLike className="m-6 w-14 h-14" />
+        </button>
+      </div>
     </div>
   );
 };
