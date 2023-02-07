@@ -61,8 +61,8 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
-    } else if (secondRender.current) {
-      secondRender.current = false;
+      // } else if (secondRender.current) {
+      //   secondRender.current = false;
     } else {
       constFilterProfiles(filters);
     }
