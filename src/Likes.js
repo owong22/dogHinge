@@ -61,7 +61,7 @@ const Likes = ({ likedDogs, setLikedDogs, constLikedDogs }) => {
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
-      // } else if (secondRender.current) {
+      // } else if (secondRender.current) { // This code is neccessary to work when I run the app with npm start. However this code breaks the page when opened on git hub pages
       //   secondRender.current = false;
     } else {
       constFilterProfiles(filters);
