@@ -75,7 +75,7 @@ function App() {
             setDiscoverPage(!discoverPage);
             setLikedDogs(constLikedDogs); // Undos any search filters on the likes page. When user goes back to likes page, all likes are shown
           }}
-          className="px-4 py-2 my-10 font-bold text-white transform rounded bg-rose-600 hover:scale-110 motion-reduce:transform-none"
+          className="px-4 py-2 my-5 font-bold text-white transform rounded bg-rose-600 hover:scale-110 motion-reduce:transform-none"
         >
           {discoverPage ? <p>See your Likes</p> : <p>Discover Dogs</p>}
         </button>

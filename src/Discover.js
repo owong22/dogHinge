@@ -14,7 +14,7 @@ const Discover = ({
   return (
     <div className="mx-20">
       <h1 className="mb-3 text-6xl font-bold text-gray-600">Discover</h1>
-      <div className="flex justify-center mt-28">
+      <div className="flex justify-center mt-10">
         <DogProfile dogProf={dogInfo[dogProfileCount]} />
       </div>
 
