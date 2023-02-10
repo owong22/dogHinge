@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dogHinge/static/css/main.ee84a19e.css",
-    "main.js": "/dogHinge/static/js/main.2ed41328.js",
+    "main.css": "/dogHinge/static/css/main.8e6371b1.css",
+    "main.js": "/dogHinge/static/js/main.d95913cf.js",
     "static/js/787.816b8d26.chunk.js": "/dogHinge/static/js/787.816b8d26.chunk.js",
     "index.html": "/dogHinge/index.html",
-    "main.ee84a19e.css.map": "/dogHinge/static/css/main.ee84a19e.css.map",
-    "main.2ed41328.js.map": "/dogHinge/static/js/main.2ed41328.js.map",
+    "main.8e6371b1.css.map": "/dogHinge/static/css/main.8e6371b1.css.map",
+    "main.d95913cf.js.map": "/dogHinge/static/js/main.d95913cf.js.map",
     "787.816b8d26.chunk.js.map": "/dogHinge/static/js/787.816b8d26.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ee84a19e.css",
-    "static/js/main.2ed41328.js"
+    "static/css/main.8e6371b1.css",
+    "static/js/main.d95913cf.js"
   ]
 }
